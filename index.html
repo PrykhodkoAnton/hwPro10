@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="hw10-1">
+    <p>this color will change</p>
+    <button >changeColor</button>
+</div>
+<div class="hw10-2">
+    <h2>To see the Pythagorean table, press any button</h2>
+</div>
+<div class="hw10-3">
+    <h2>Random picture</h2>
+    <button>go</button>
+</div>
+</body>
+<style>
+    .textColor{
+        color: blue;
+    }
+</style>
+<script>
+    function changeColor() {
+        let textElement = elementP.querySelector('p');
+        textElement.classList.toggle('textColor')
+    }
+    let elementP = document.querySelector('.hw10-1');
+    let buttonChangeColor = elementP.querySelector('button')
+    buttonChangeColor.addEventListener('click', changeColor)
+
+
+    let containerTableP = document.querySelector('.hw10-2');
+    let clickBody = document.querySelector('body');
+    let addTableP
+    let h2Text = document.querySelector('h2');
+
+    function fillTable (){
+        if (addTableP) {
+            containerTableP.removeChild(addTableP);
+        }
+        h2Text.textContent = "Here's the Pythagorean table";
+        addTableP = document.createElement('table');
+        containerTableP.appendChild(addTableP);
+        for (let i = 1; i<11; i++){
+            let tr = document.createElement('tr');
+            for (let j = 1; j < 11; j++){
+                let td = document.createElement('td');
+                td.innerHTML = i*j;
+                tr.appendChild(td);
+            }
+            addTableP.appendChild(tr);
+        }
+    }
+    clickBody.addEventListener('keydown', fillTable);
+
+    const container = document.querySelector('.hw10-3');
+    const buttonRandomImg = container.querySelector('button');
+    let addContainerRandomImg;
+    function randomImg (){
+        if (addContainerRandomImg){
+            addContainerRandomImg.remove(addContainerRandomImg);
+        }
+        addContainerRandomImg = document.createElement("img");
+        container.appendChild(addContainerRandomImg);
+        const random = Math.floor(Math.random()*9)+1;
+        addContainerRandomImg.src = '../image/'+ random + '.jpg';
+    }
+    buttonRandomImg.addEventListener('click', randomImg);
+
+</script>
+
+</html>
